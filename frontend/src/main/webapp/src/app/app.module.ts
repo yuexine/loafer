@@ -6,21 +6,21 @@ import {HttpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {HomeComponent} from "./home/home.component";
 import {AppRouteModule} from "./app.routing.module";
-import {LoginComponent} from "./login/login.component";
 import {PageNotFoundComponent} from "./404/not-found.component";
+import {SignModule} from "./sign/sign.module";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    LoginComponent,
-    PageNotFoundComponent
-  ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    SignModule,
     AppRouteModule
+  ],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    PageNotFoundComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

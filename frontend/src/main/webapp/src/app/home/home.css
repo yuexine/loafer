@@ -1,0 +1,55 @@
+.border-t-3 {
+  border-top: 10px solid #d4d0d6;
+}
+
+.border-primary {
+  border-color: #8f4dbf;
+}
+
+.btn-primary-outline {
+  color: #8f4dbf;
+  background-color: transparent;
+  border: 1px solid #8f4dbf;
+  border-radius: 0px;
+}
+
+.btn-primary-outline:hover {
+  color: #ffffff;
+  background-color: #8f4dbf;
+  border-color: #8f4dbf;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-height {
+  /*min-height: 100vh;*/
+}
+
+.link-brand {
+  color: #8f4dbf;
+}
+
+.m-xs-r-6 {
+  margin-right: 2rem;
+}
+
+.navbar {
+  margin-bottom: 1px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar_buttons {
+  margin-top: 4px;
+}
+
+

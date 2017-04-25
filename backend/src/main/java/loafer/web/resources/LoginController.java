@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by w on 2017/4/24.
  */
-public class LoginResource {
+@RestController
+public class LoginController {
 
-    private static final Logger logger = LoggerFactory.getLogger(LoginResource.class);
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-    @PostMapping
+    @PostMapping("/login")
     public Result login(@RequestBody FormUser formUser) {
         logger.info(formUser.toString());
         return new Result(true);
     }
-
 
 }

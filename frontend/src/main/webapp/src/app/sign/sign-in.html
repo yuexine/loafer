@@ -1,0 +1,21 @@
+<div>
+  <div class="col-md-6 col-md-offset-3">
+    <h2>Login</h2>
+    <form method="post" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      {{loginForm.valid}}
+      <div name="form" class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" name="username" [(ngModel)]="model.username" #name="ngModel" required/>
+        <div [hidden]="name.pristine || name.valid" class="alert alert-danger">Username is required</div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" id="password" [(ngModel)]="model.password" #password="ngModel" required />
+        <div [hidden]="password.pristine || password.valid" class="alert alert-danger">Password is required</div>
+      </div>
+      <div class="form-group">
+        <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">Login</button>
+      </div>
+    </form>
+  </div>
+</div>

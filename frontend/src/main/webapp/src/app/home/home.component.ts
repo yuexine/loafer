@@ -1,7 +1,8 @@
-import {AfterViewInit, Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges} from "@angular/core";
+import {Component, OnChanges, OnInit, SimpleChanges} from "@angular/core";
 import {HomeService} from "./home.service";
 import {User} from "../sign/user";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
+import "rxjs/add/operator/filter";
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./home.css']
 })
 
-export class HomeComponent implements OnInit,OnChanges {
+export class HomeComponent implements OnInit, OnChanges {
 
 
   currentUser: User = this.homeService.currentUser();
@@ -19,6 +20,11 @@ export class HomeComponent implements OnInit,OnChanges {
   }
 
   ngOnInit(): void {
+    this.router.events
+      .filter(event => event instanceof NavigationEnd)
+      .subscribe((event) => {
+        this.currentUser = this.homeService.currentUser();
+      })
   }
 
   ngOnChanges(changes: SimpleChanges): void {

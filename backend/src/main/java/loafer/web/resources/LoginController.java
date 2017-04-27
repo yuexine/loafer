@@ -19,7 +19,7 @@ public class LoginController {
     @PostMapping("/login")
     public Result login(@RequestBody FormUser formUser) {
         logger.info(formUser.toString());
-        return new Result(true);
+        return new Result(true, formUser);
     }
 
 }

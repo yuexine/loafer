@@ -12,3 +12,6 @@ $ mvn spring-boot:run
 1. Project Build: https://blog.jdriven.com/2016/12/angular2-spring-boot-getting-started/
 
 #### Issue
+
+#### Doc
+1. RxJS http://reactivex.io/rxjs/manual/overview.html

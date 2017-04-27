@@ -7,9 +7,13 @@
 
           </a>
         </div>
-        <div class="navbar_buttons">
+        <div *ngIf="!currentUser" class="navbar_buttons">
           <a routerLink="/signup" class="m-xs-r-6 link-brand">Sign up</a>
           <a routerLink="/signin" class="btn btn-primary-outline">Sign In</a>
+        </div>
+        <div *ngIf="currentUser">
+          <span>Hi, {{currentUser.username}}</span>
+          <button class="btn btn-primary" (click)="logout()">Logout</button>
         </div>
       </div>
     </div>

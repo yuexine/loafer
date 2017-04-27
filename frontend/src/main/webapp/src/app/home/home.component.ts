@@ -1,8 +1,9 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from "@angular/core";
-import {HomeService} from "./home.service";
-import {User} from "../sign/user";
 import {NavigationEnd, Router} from "@angular/router";
 import "rxjs/add/operator/filter";
+
+import {User} from "../models/index";
+import {SignService} from "../services/index";
 
 @Component({
   selector: 'app-home',
@@ -12,18 +13,17 @@ import "rxjs/add/operator/filter";
 
 export class HomeComponent implements OnInit, OnChanges {
 
-
-  currentUser: User = this.homeService.currentUser();
-
-  constructor(private homeService: HomeService,
+  constructor(private signService: SignService,
               private router: Router) {
   }
+
+  currentUser: User = this.signService.currentUser();
 
   ngOnInit(): void {
     this.router.events
       .filter(event => event instanceof NavigationEnd)
       .subscribe((event) => {
-        this.currentUser = this.homeService.currentUser();
+        this.currentUser = this.signService.currentUser();
       })
   }
 
@@ -32,8 +32,8 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   logout() {
-    this.homeService.logout();
-    this.currentUser = this.homeService.currentUser();
+    this.signService.logout();
+    this.currentUser = this.signService.currentUser();
     this.router.navigate(['']);
   }
 }

@@ -1,7 +1,8 @@
 import {Injectable} from "@angular/core";
 import {Headers, Http, RequestOptions, Response} from "@angular/http";
-import {User} from "./user";
 import "rxjs/add/operator/map";
+
+import {User} from "../models/index";
 
 @Injectable()
 export class SignService {
@@ -29,6 +30,15 @@ export class SignService {
         }
         return user;
       });
+  }
+
+  logout() {
+    localStorage.removeItem('currentUser');
+  }
+
+  currentUser() {
+    // let user: User = JSON.parse(localStorage.getItem('currentUser'));
+    return JSON.parse(localStorage.getItem('currentUser'));
   }
 
 }

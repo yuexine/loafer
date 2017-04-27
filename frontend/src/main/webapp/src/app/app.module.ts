@@ -9,8 +9,8 @@ import {HomeComponent} from "./home/home.component";
 import {AppRouteModule} from "./app.routing.module";
 import {PageNotFoundComponent} from "./404/not-found.component";
 import {SignModule} from "./sign/sign.module";
-import {HomeService} from "./home/home.service";
-
+import {ContextModule} from "./context/context.module";
+import {SignService} from "./services/sign.service";
 
 @NgModule({
   imports: [
@@ -18,6 +18,7 @@ import {HomeService} from "./home/home.service";
     FormsModule,
     HttpModule,
     SignModule,
+    ContextModule,
     AppRouteModule,
     BrowserAnimationsModule
   ],
@@ -26,7 +27,7 @@ import {HomeService} from "./home/home.service";
     HomeComponent,
     PageNotFoundComponent
   ],
-  providers: [HomeService],
+  providers: [SignService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

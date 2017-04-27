@@ -11,6 +11,8 @@ $ mvn spring-boot:run
 #### Reference
 1. Project Build: https://blog.jdriven.com/2016/12/angular2-spring-boot-getting-started/
 
+2. Router event: http://liuwenzhuang.github.io/2016/03/angular2-dynamic-page-title
+
 #### Issue
 
 #### Doc

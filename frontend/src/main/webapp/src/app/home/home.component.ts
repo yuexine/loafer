@@ -2,8 +2,8 @@ import {Component, OnChanges, OnInit, SimpleChanges} from "@angular/core";
 import {NavigationEnd, Router} from "@angular/router";
 import "rxjs/add/operator/filter";
 
-import {User} from "../models/index";
-import {SignService} from "../services/index";
+import {User} from "../_models/index";
+import {SignService} from "../_services/index";
 
 @Component({
   selector: 'app-home',

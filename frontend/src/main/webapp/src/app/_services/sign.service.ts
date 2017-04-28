@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Headers, Http, RequestOptions, Response} from "@angular/http";
 import "rxjs/add/operator/map";
 
-import {User} from "../models/index";
+import {User} from "../_models/index";
 
 @Injectable()
 export class SignService {
@@ -37,7 +37,6 @@ export class SignService {
   }
 
   currentUser() {
-    // let user: User = JSON.parse(localStorage.getItem('currentUser'));
     return JSON.parse(localStorage.getItem('currentUser'));
   }
 

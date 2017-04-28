@@ -1,0 +1,27 @@
+.tag{
+  padding: 37px;
+}
+
+.tag .title{
+  margin-top: 0;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #ebebeb;
+  margin-bottom: 21px;
+  position: relative;
+}
+
+.tag-list a{
+  border: 1px solid #ebebeb;
+  padding: 2px 7px;
+  color: #959595;
+  line-height: 1.5em;
+  margin: 0px 7px 7px 0px;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+::selection {
+  color: #ffffff;
+  background: #e67e22;
+  text-shadow: none;
+}

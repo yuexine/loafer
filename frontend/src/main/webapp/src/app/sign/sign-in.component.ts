@@ -1,8 +1,8 @@
 import {Component} from "@angular/core";
 import {Router} from "@angular/router";
 
-import {User} from "../models/index";
-import {SignService} from "../services/index";
+import {User} from "../_models/index";
+import {SignService} from "../_services/index";
 
 @Component({
   // template: `

@@ -9,8 +9,9 @@ import {HomeComponent} from "./home/home.component";
 import {AppRouteModule} from "./app.routing.module";
 import {PageNotFoundComponent} from "./404/not-found.component";
 import {SignModule} from "./sign/sign.module";
-import {ContextModule} from "./context/context.module";
-import {SignService} from "./services/sign.service";
+import {SignService} from "./_services/index";
+import {TagsComponent} from "./tag/tags.components";
+import {PostsModule} from "./posts/posts.module";
 
 @NgModule({
   imports: [
@@ -18,13 +19,14 @@ import {SignService} from "./services/sign.service";
     FormsModule,
     HttpModule,
     SignModule,
-    ContextModule,
+    PostsModule,
     AppRouteModule,
     BrowserAnimationsModule
   ],
   declarations: [
     AppComponent,
     HomeComponent,
+    TagsComponent,
     PageNotFoundComponent
   ],
   providers: [SignService],

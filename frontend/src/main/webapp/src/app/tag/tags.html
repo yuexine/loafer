@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="col-md-6 tag">
+    <h4 class="title">Tags</h4>
+    <div class="context tag-list">
+      <a *ngFor="let tag of tags" routerLink="/post/tag/{{tag.id}}">
+        {{tag.name}}
+      </a>
+    </div>
+  </div>
+</div>

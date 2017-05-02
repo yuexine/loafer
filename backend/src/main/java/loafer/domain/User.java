@@ -39,7 +39,7 @@ public class User implements Serializable {
 
     @NotNull
     @Column(nullable = false)
-    private Boolean activated = false;
+    private boolean activated = false;
 
     @JsonIgnore
     @Size(max = 256)

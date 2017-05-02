@@ -4,6 +4,7 @@ import loafer.web.models.FormUser;
 import loafer.web.models.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,16 @@ public class LoginController {
     public Result login(@RequestBody FormUser formUser) {
         logger.info(formUser.toString());
         return new Result(true, formUser);
+    }
+
+    @GetMapping("/hello")
+    public String say(){
+        return "Hello, World";
+    }
+
+    @GetMapping("/api/hello")
+    public String loginSay(){
+        return "Hello, World";
     }
 
 }

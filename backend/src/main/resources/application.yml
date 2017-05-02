@@ -1,0 +1,14 @@
+spring:
+#  redis:
+#    host: localhost
+#    password:
+#    port: 6379
+  datasource:
+    url: jdbc:mysql://localhost:3306/loafer?useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create

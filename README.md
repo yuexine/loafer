@@ -17,3 +17,9 @@ $ mvn spring-boot:run
 
 #### Doc
 1. RxJS http://reactivex.io/rxjs/manual/overview.html
+
+#### Stack
+
+- `Spring-Boot`
+- `Spring-Security`
+- `Angular4`

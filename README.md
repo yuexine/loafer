@@ -23,3 +23,8 @@ $ mvn spring-boot:run
 - `Spring-Boot`
 - `Spring-Security`
 - `Angular4`
+
+#### Docker
+1. log: `docker logs -f container-name` or `docker logs -n 10 container-name`
+
+

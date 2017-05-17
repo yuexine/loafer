@@ -59,7 +59,7 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
     private Set<PersistentToken> persistentTokens = new HashSet<>();
 
-    private void setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username.toLowerCase();
     }
 

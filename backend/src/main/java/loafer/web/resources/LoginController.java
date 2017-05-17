@@ -1,6 +1,6 @@
 package loafer.web.resources;
 
-import loafer.web.models.FormUser;
+import loafer.web.models.UserVM;
 import loafer.web.models.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +18,7 @@ public class LoginController {
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @PostMapping("/login")
-    public Result login(@RequestBody FormUser formUser) {
+    public Result login(@RequestBody UserVM formUser) {
         logger.info(formUser.toString());
         return new Result(true, formUser);
     }

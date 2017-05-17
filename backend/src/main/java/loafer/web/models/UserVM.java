@@ -6,7 +6,7 @@ import lombok.Data;
  * Created by w on 2017/4/24.
  */
 @Data
-public class FormUser {
+public class UserVM {
 
     private String username;
 

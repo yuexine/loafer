@@ -4,11 +4,11 @@ spring:
 #    password:
 #    port: 6379
   datasource:
-    url: jdbc:mysql://localhost:3306/loafer?useSSL=false
+    url: jdbc:mysql://rm-uf63m4yauotn1pz32o.mysql.rds.aliyuncs.com:3306/loafer?useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password:
+    password: wuyuexin@1992
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: none

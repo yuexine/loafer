@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: loafer-gateway
+server:
+  port: 8060
+eureka:
+  instance:
+    hostname: gateway
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_LIST}
+zuul:
+  routes:
+    mail:
+      path: /signup/**
+      service-id: service-provider-signup

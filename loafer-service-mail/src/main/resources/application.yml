@@ -1,0 +1,12 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: service-provider-mail
+logging:
+  level:
+    root: INFO
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_LIST}

@@ -26,5 +26,7 @@ $ mvn spring-boot:run
 
 #### Docker
 1. log: `docker logs -f container-name` or `docker logs -n 10 container-name`
-
+2. push image to aliyun container center after maven package :`mvn clean package -DpushImage`
+3. docker exec -i -t  loafer-mail /bin/sh
+4. start-order: https://docs.docker.com/compose/startup-order/
 

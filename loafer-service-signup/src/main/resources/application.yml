@@ -1,0 +1,14 @@
+server:
+  port: 9002
+spring:
+  application:
+    name: service-provider-signup
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_LIST}
+  instance:
+    prefer-ip-address: true
+ribbon:
+  eureka:
+    enabled: true

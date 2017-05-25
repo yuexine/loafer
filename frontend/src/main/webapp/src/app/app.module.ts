@@ -12,6 +12,8 @@ import {SignModule} from "./sign/sign.module";
 import {SignService} from "./_services/index";
 import {TagsComponent} from "./tag/tags.components";
 import {PostsModule} from "./posts/posts.module";
+import {StorageService} from "./_services/storage.service";
+import {HttpClient} from "./_services/http-client.service";
 
 @NgModule({
   imports: [
@@ -29,7 +31,7 @@ import {PostsModule} from "./posts/posts.module";
     TagsComponent,
     PageNotFoundComponent
   ],
-  providers: [SignService],
+  providers: [HttpClient, StorageService, SignService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -11,6 +11,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +22,7 @@ import javax.validation.Valid;
 /**
  * Created by wuyuexin on 2017/5/16.
  */
-@RestController("/api")
+@RestController
 public class AccountResource {
 
     private final Logger logger = LoggerFactory.getLogger(AccountResource.class);
@@ -37,7 +39,7 @@ public class AccountResource {
         this.userRepository = userRepository;
     }
 
-    @PostMapping(path = "/register", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
+    @PostMapping(path = "register", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity register(@Valid @RequestBody UserVM userVM) {
         HttpHeaders textPlainHeaders = new HttpHeaders();
         textPlainHeaders.setContentType(MediaType.TEXT_PLAIN);
@@ -50,5 +52,11 @@ public class AccountResource {
                     mailService.sendActivationEmail(user);
                     return new ResponseEntity(HttpStatus.CREATED);
                 });
+    }
+
+    @GetMapping(path = "account", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity account(){
+        Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return new ResponseEntity(obj, HttpStatus.OK);
     }
 }

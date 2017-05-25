@@ -1,6 +1,6 @@
 version: "2"
 services:
-  discovery:
+  discovery1:
     container_name: loafer-discovery
     image: registry.cn-shanghai.aliyuncs.com/loafer/loafer-discovery:0.0.1-SNAPSHOT
     ports:
@@ -11,7 +11,7 @@ services:
     container_name: loafer-mail
     image: registry.cn-shanghai.aliyuncs.com/loafer/loafer-service-mail:0.0.1-SNAPSHOT
     environment:
-      - EUREKA_SERVER_LIST=http://discovery:8050/eureka/
+      - EUREKA_SERVER_LIST=http://discovery1:8050/eureka/
     ports:
       - 9001:9001
     networks:
@@ -20,7 +20,7 @@ services:
     container_name: loafer-signup
     image: registry.cn-shanghai.aliyuncs.com/loafer/loafer-service-signup:0.0.1-SNAPSHOT
     environment:
-      - EUREKA_SERVER_LIST=http://discovery:8050/eureka/
+      - EUREKA_SERVER_LIST=http://discovery1:8050/eureka/
     ports:
       - 9002:9002
     networks:
@@ -29,7 +29,7 @@ services:
     container_name: loafer-gateway
     image: registry.cn-shanghai.aliyuncs.com/loafer/loafer-gateway:0.0.1-SNAPSHOT
     environment:
-      - EUREKA_SERVER_LIST=http://discovery:8050/eureka/
+      - EUREKA_SERVER_LIST=http://discovery1:8050/eureka/
     ports:
       - 8060:8060
     networks:

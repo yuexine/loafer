@@ -1,0 +1,23 @@
+<div class="container">
+  <form name="sign" (ngSubmit)="signUp()" class="form-horizontal col-sm-6 col-sm-offset-3" #signup="ngForm">
+    <div class="form-group">
+      <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" [(ngModel)]="model.email" #email="ngModel" required>
+        <div [hidden]="email.pristine || email.valid" class="alert alert-danger">Email is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPassWord" class="col-sm-2 control-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="inputPassWord" name="password" placeholder="Password" [(ngModel)]="model.password" #password="ngModel" required>
+        <div [hidden]="password.pristine || password.valid" class="alert alert-danger">Email is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button [disabled]="!signup.valid" type="submit" class="btn btn-default">Sign Up</button>
+      </div>
+    </div>
+  </form>
+</div>

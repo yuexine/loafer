@@ -2,6 +2,7 @@ package loafer.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ import java.io.Serializable;
 @Table(name = "lf_authority")
 @Getter
 @Setter
-public class Authority implements Serializable {
+public class Authority implements GrantedAuthority,Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -41,5 +42,10 @@ public class Authority implements Serializable {
     @Override
     public int hashCode() {
         return getName().hashCode();
+    }
+
+    @Override
+    public String getAuthority() {
+        return name;
     }
 }

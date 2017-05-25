@@ -7,9 +7,11 @@ import org.springframework.web.servlet.mvc.method.annotation.AbstractJsonpRespon
  * Created by w on 2017/4/27.
  */
 @ControllerAdvice
-public class JsonPAdvice extends AbstractJsonpResponseBodyAdvice {
+public class JsonPConfiguration extends AbstractJsonpResponseBodyAdvice {
 
-    public JsonPAdvice() {
-        super("callback");
+    private static final String JSON_P_CALLBACK = "callback";
+
+    public JsonPConfiguration() {
+        super(JSON_P_CALLBACK);
     }
 }

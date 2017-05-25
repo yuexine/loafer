@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 
 import {User} from "../_models/index";
 import {SignService} from "../_services/index";
+import {StorageService} from "../_services/storage.service";
 
 @Component({
   // template: `
@@ -15,19 +16,32 @@ import {SignService} from "../_services/index";
 export class SignInComponent {
 
   constructor(private router: Router,
-              private signService: SignService) {
+              private signService: SignService,
+              private storageService: StorageService) {
   }
 
   model = new User();
 
-  onSubmit() {
+  private tokenKey = "X-AuthToken";
 
-    console.log(localStorage.getItem('currentUser'));
+  onSubmit() {
 
     this.signService.login(this.model).subscribe(
       data => {
-        console.log(JSON.stringify(data));
-        this.router.navigate(['/']);
+        if (data.status == 200) {
+          let authToken = data.headers.get(this.tokenKey);
+          this.storageService.setItem(this.tokenKey, authToken);
+          this.signService.account().subscribe(
+            data => {
+              console.log(data);
+              this.storageService.setItem("currentUser", JSON.stringify(data.json()));
+              this.router.navigate(['/']);
+            },
+            error => {
+              console.log(error)
+            }
+          );
+        }
       },
       error => {
         console.error(error);

@@ -3,6 +3,7 @@ package loafer.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,7 +19,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "lf_user")
-public class User implements Serializable {
+public class User implements UserDetails,Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -76,5 +77,25 @@ public class User implements Serializable {
     @Override
     public int hashCode() {
         return getUsername().hashCode();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

@@ -1,7 +1,8 @@
 package loafer.config;
 
-import loafer.security.AjaxAuthenticationFailureHandler;
-import loafer.security.AjaxAuthenticationSuccessHandler;
+import loafer.security.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,12 +13,17 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.web.filter.CorsFilter;
 
 import javax.annotation.PostConstruct;
 
@@ -29,13 +35,27 @@ import javax.annotation.PostConstruct;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    private static final Logger log = LoggerFactory.getLogger(SecurityConfiguration.class);
+
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
     private final UserDetailsService userDetailsService;
 
-    public SecurityConfiguration(AuthenticationManagerBuilder authenticationManagerBuilder, UserDetailsService userDetailsService) {
+    private final CorsFilter corsFilter;
+
+    private final UnauthorisedEntryPoint unauthorisedEntryPoint;
+
+    private final StatelessAuthenticationFilter statelessAuthenticationFilter;
+
+    private final StatelessTokenAuthenticationFilter statelessTokenAuthenticationFilter;
+
+    public SecurityConfiguration(AuthenticationManagerBuilder authenticationManagerBuilder, UserDetailsService userDetailsService, CorsFilter corsFilter, UnauthorisedEntryPoint unauthorisedEntryPoint, StatelessAuthenticationFilter statelessAuthenticationFilter, StatelessTokenAuthenticationFilter statelessTokenAuthenticationFilter) {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.userDetailsService = userDetailsService;
+        this.corsFilter = corsFilter;
+        this.unauthorisedEntryPoint = unauthorisedEntryPoint;
+        this.statelessAuthenticationFilter = statelessAuthenticationFilter;
+        this.statelessTokenAuthenticationFilter = statelessTokenAuthenticationFilter;
     }
 
     @PostConstruct
@@ -56,30 +76,69 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //@formatter:off
         http
-                .csrf()
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-        .and()
+                .csrf().disable()
+                .httpBasic()
+                    .authenticationEntryPoint(unauthorisedEntryPoint)
+                    .and()
+                .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
+                .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .and()
                 .formLogin()
-//                .loginPage("/login")
-//                .loginProcessingUrl("/api/authentication")
-                .successHandler(ajaxAuthenticationSuccessHandle())
-                .failureHandler(ajaxAuthenticationFailureHandle())
-        .and()
+                    .loginProcessingUrl("/api/auth")
+                    .usernameParameter("username")
+                    .passwordParameter("password")
+                    .successHandler(authenticationSuccessHandler())
+                    .failureHandler(authenticationFailureHandler())
+                    .and()
+                .logout()
+                    .logoutSuccessHandler(logoutSuccessHandler())
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID")
+                    .and()
                 .authorizeRequests()
-                .antMatchers("/api/**").authenticated()
-                .antMatchers("/**").permitAll()
+                    .antMatchers("/**").permitAll()
+                    .and()
+                .addFilterBefore(statelessAuthenticationFilter, ChannelProcessingFilter.class)
+                .addFilterAfter(statelessTokenAuthenticationFilter, BasicAuthenticationFilter.class)
+
         ;
+
+//        http
+//                .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
+//                .exceptionHandling()
+//                .authenticationEntryPoint(http401UnauthorizedEntryPoint())
+//        .and()
+//                .formLogin()
+////                .loginPage("/login")
+//                .loginProcessingUrl("/login")
+//                .usernameParameter("username")
+//                .passwordParameter("password")
+//                .successHandler(ajaxAuthenticationSuccessHandle())
+//                .failureHandler(ajaxAuthenticationFailureHandle())
+//        .and()
+//                .authorizeRequests()
+//                .antMatchers("/api/**").authenticated()
+//                .antMatchers("/**").permitAll()
+//        ;
+        //@formatter:on
     }
 
     @Bean
-    public AuthenticationFailureHandler ajaxAuthenticationFailureHandle() {
-        return new AjaxAuthenticationFailureHandler();
+    public LogoutSuccessHandler logoutSuccessHandler() {
+        return new LogoutSuccessHandlerImpl();
     }
 
     @Bean
-    public AuthenticationSuccessHandler ajaxAuthenticationSuccessHandle() {
-        return new AjaxAuthenticationSuccessHandler();
+    public AuthenticationFailureHandler authenticationFailureHandler() {
+        return new AuthenticationFailureHandlerImpl();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
+        return new AuthenticationSuccessHandlerImpl();
     }
 
     @Bean

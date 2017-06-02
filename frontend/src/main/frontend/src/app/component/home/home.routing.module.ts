@@ -16,11 +16,11 @@ const homeRoutes: Routes = [
     children: [
       {
         path: '',
-        component: DiscoveryComponent,
+        component: DiscoveryListComponent,
         children: [
           {
             path: '',
-            component: DiscoveryListComponent
+            component: DiscoveryComponent
           }
         ]
       },

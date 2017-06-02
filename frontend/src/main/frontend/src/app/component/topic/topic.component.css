@@ -1,0 +1,22 @@
+.topic_body {
+  margin: 0 0 20px 5px;
+}
+
+.top_item {
+  padding: 20px 0;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.padding0 {
+  padding: 0;
+}
+
+.separation {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-top: 1px solid #f2f2f2;
+}
+
+.line_h3 {
+  line-height: 3;
+}

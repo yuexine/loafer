@@ -22,6 +22,10 @@
   font-size: 12px;
 }
 
+.margin_top10 {
+  margin-top: 10px;
+}
+
 .custome_nav_tab li {
   float: right;
 }

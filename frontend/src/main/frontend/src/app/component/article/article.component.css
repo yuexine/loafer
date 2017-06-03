@@ -1,0 +1,50 @@
+.agree {
+  border: 1px solid #f5f5f5;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+.content_end {
+  margin: 20px 20px 20px 5px;
+}
+
+.article_context {
+  border-right: solid 1px #f2f2f2;
+}
+
+.agree_user {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.comment_item {
+  margin: 0 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.comment_time {
+  float: right;
+  min-height: 28px;
+  line-height: 28px;
+  font-size: 12px;
+  color: #666;
+}
+
+.comment_body {
+  line-height: 3;
+}
+
+.sile_item_header {
+  padding-left: 0;
+}
+
+.sile_item_body {
+
+}
+
+.sile_item {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

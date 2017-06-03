@@ -11,12 +11,57 @@
   padding: 0;
 }
 
-.separation {
-  margin-bottom: 20px;
-  margin-top: 20px;
-  border-top: 1px solid #f2f2f2;
-}
-
 .line_h3 {
   line-height: 3;
+}
+
+.topic_icon{
+  margin-left: 20px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.font-size20 {
+  font-size: 20px;
+}
+
+.margin_top40 {
+  margin-top: 40px;
+}
+
+.topic_search {
+  /*position: absolute;*/
+  bottom: 5px;
+  right: 20px;
+}
+
+.topic_search input {
+  width: 240px;
+}
+
+.margin_top20 {
+  margin-top: 20px;
+}
+
+.item {
+  margin-left: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #f2f2f2;
+  padding-bottom: 10px;
+}
+
+code {
+  color: #777;
+}
+
+.padding_r15 {
+  padding-right: 15px;
+}
+
+.user_item .user_avatar {
+  padding: 5px;
+}
+
+.user_item .user_name {
+    line-height: 1.7;
 }

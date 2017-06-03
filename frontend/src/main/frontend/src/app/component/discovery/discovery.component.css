@@ -117,3 +117,17 @@
   padding-top: 20px;
   border-top: 1px solid #f2f2f2;
 }
+
+.clear {
+  clear:both;
+}
+
+.separation {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-top: 1px solid #f2f2f2;
+}
+
+.line_h2 {
+  line-height: 2;
+}

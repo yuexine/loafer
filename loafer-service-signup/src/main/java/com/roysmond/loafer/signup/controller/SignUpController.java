@@ -13,6 +13,7 @@ public class SignUpController {
 
     private final MailProvider mailProvider;
 
+
     public SignUpController(MailProvider mailProvider) {
         this.mailProvider = mailProvider;
     }

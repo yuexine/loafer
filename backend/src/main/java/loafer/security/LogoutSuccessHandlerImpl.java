@@ -21,8 +21,6 @@ public class LogoutSuccessHandlerImpl implements LogoutSuccessHandler {
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         log.info("LogoutSuccessHandlerImpl onLogoutSuccess start.");
 
-
-
         log.info("LogoutSuccessHandlerImpl onLogoutSuccess end.");
     }
 }

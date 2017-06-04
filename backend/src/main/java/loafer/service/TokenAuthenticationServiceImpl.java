@@ -77,4 +77,11 @@ public class TokenAuthenticationServiceImpl implements TokenAuthenticationServic
         }
         return null;
     }
+
+    @Override
+    public void removeAuthToken(String authToken) {
+        if (StringUtils.isNotEmpty(authToken)){
+            stringRedisTemplate.delete(authToken);
+        }
+    }
 }

@@ -22,13 +22,13 @@ import java.io.IOException;
  * Created by wuyuexin on 2017/5/23.
  */
 @Component
-public class StatelessAuthenticationFilter extends GenericFilterBean {
+public class TokenAuthenticationFilter extends GenericFilterBean {
 
-    private static final Logger log = LoggerFactory.getLogger(StatelessAuthenticationFilter.class);
+    private static final Logger log = LoggerFactory.getLogger(TokenAuthenticationFilter.class);
 
     private final TokenAuthenticationService tokenAuthenticationService;
 
-    public StatelessAuthenticationFilter(TokenAuthenticationService tokenAuthenticationService) {
+    public TokenAuthenticationFilter(TokenAuthenticationService tokenAuthenticationService) {
         this.tokenAuthenticationService = tokenAuthenticationService;
     }
 
@@ -37,13 +37,16 @@ public class StatelessAuthenticationFilter extends GenericFilterBean {
         log.info("StatelessAuthenticationFilter filter start. ");
         log.info(((HttpServletRequest) servletRequest).getMethod());
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String authToken = ((HttpServletRequest) servletRequest).getHeader(SecurityConstant.HEADER_SECURITY_TOKEN);
 
         if (StringUtils.isNotEmpty(authToken)) {
-            ((HttpServletResponse) servletResponse).setHeader(SecurityConstant.HEADER_SECURITY_TOKEN, authToken);
-            authentication = tokenAuthenticationService.getAuthentication(authToken);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            Authentication authentication = tokenAuthenticationService.getAuthentication(authToken);
+            if (authentication == null){
+                ((HttpServletResponse) servletResponse).sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access Denied");
+            }else {
+                ((HttpServletResponse) servletResponse).setHeader(SecurityConstant.HEADER_SECURITY_TOKEN, authToken);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
         }
 
         log.info("StatelessAuthenticationFilter filter end. ");

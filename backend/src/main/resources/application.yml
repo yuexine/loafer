@@ -1,17 +1,15 @@
 spring:
-#  redis:
-#    host: localhost
-#    password:
-#    port: 6379
   datasource:
-    url: jdbc:mysql://rm-uf63m4yauotn1pz32o.mysql.rds.aliyuncs.com:3306/loafer?useSSL=false
+#    url: jdbc:mysql://rm-uf63m4yauotn1pz32o.mysql.rds.aliyuncs.com:3306/loafer?useSSL=false
+    url: jdbc:mysql://localhost:3306/loafer?useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: wuyuexin@1992
+#    password: wuyuexin@1992
+    password:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
   redis:
     host: localhost
     port: 6379

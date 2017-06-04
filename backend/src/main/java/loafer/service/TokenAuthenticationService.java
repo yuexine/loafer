@@ -10,4 +10,6 @@ public interface TokenAuthenticationService {
     String createAuthToken(Authentication authentication);
 
     Authentication getAuthentication(String authToken);
+
+    void removeAuthToken(String authToken);
 }

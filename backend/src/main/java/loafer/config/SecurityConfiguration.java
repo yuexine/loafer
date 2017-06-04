@@ -17,7 +17,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -45,17 +44,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UnauthorisedEntryPoint unauthorisedEntryPoint;
 
-    private final StatelessAuthenticationFilter statelessAuthenticationFilter;
+    private final TokenAuthenticationFilter tokenAuthenticationFilter;
 
-    private final StatelessTokenAuthenticationFilter statelessTokenAuthenticationFilter;
-
-    public SecurityConfiguration(AuthenticationManagerBuilder authenticationManagerBuilder, UserDetailsService userDetailsService, CorsFilter corsFilter, UnauthorisedEntryPoint unauthorisedEntryPoint, StatelessAuthenticationFilter statelessAuthenticationFilter, StatelessTokenAuthenticationFilter statelessTokenAuthenticationFilter) {
+    public SecurityConfiguration(AuthenticationManagerBuilder authenticationManagerBuilder,
+                                 UserDetailsService userDetailsService,
+                                 CorsFilter corsFilter,
+                                 UnauthorisedEntryPoint unauthorisedEntryPoint,
+                                 TokenAuthenticationFilter tokenAuthenticationFilter) {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.userDetailsService = userDetailsService;
         this.corsFilter = corsFilter;
         this.unauthorisedEntryPoint = unauthorisedEntryPoint;
-        this.statelessAuthenticationFilter = statelessAuthenticationFilter;
-        this.statelessTokenAuthenticationFilter = statelessTokenAuthenticationFilter;
+        this.tokenAuthenticationFilter = tokenAuthenticationFilter;
     }
 
     @PostConstruct
@@ -101,28 +101,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/**").permitAll()
                     .and()
-                .addFilterBefore(statelessAuthenticationFilter, ChannelProcessingFilter.class)
-                .addFilterAfter(statelessTokenAuthenticationFilter, BasicAuthenticationFilter.class)
-
+                .addFilterBefore(tokenAuthenticationFilter, BasicAuthenticationFilter.class)
         ;
-
-//        http
-//                .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
-//                .exceptionHandling()
-//                .authenticationEntryPoint(http401UnauthorizedEntryPoint())
-//        .and()
-//                .formLogin()
-////                .loginPage("/login")
-//                .loginProcessingUrl("/login")
-//                .usernameParameter("username")
-//                .passwordParameter("password")
-//                .successHandler(ajaxAuthenticationSuccessHandle())
-//                .failureHandler(ajaxAuthenticationFailureHandle())
-//        .and()
-//                .authorizeRequests()
-//                .antMatchers("/api/**").authenticated()
-//                .antMatchers("/**").permitAll()
-//        ;
         //@formatter:on
     }
 

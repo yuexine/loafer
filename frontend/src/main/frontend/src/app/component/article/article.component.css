@@ -48,3 +48,13 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.issue_end {
+  margin-top: 20px;
+  line-height: 20px;
+  min-height: 20px;
+}
+
+.text_item {
+  line-height: 2;
+}

@@ -18,13 +18,6 @@ public class LoginController {
 
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-//    @PreAuthorize("isAuthenticated()")
-    @PostMapping("/login")
-    public Result login(@RequestBody UserVM formUser) {
-        logger.info(formUser.toString());
-        return new Result(true, formUser);
-    }
-
     @GetMapping("/hello")
     public String say(){
         return "Hello, World";

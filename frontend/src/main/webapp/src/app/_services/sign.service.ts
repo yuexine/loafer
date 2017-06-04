@@ -3,7 +3,7 @@ import {Headers, RequestOptions, Response} from "@angular/http";
 import "rxjs/add/operator/map";
 
 import {User} from "../_models/index";
-import {HttpClient} from "./http-client.service";
+import {HttpClient} from "./http.service";
 
 @Injectable()
 export class SignService {
@@ -19,14 +19,12 @@ export class SignService {
   private optionsForm = new RequestOptions({headers: this.headersForm});
 
   register(user: User) {
-    console.log(JSON.stringify(user));
     let body = JSON.stringify({
       username: user.email,
       password: user.password
     });
     return this.http.post(this.apiAddr + 'register', body, this.options)
       .map((reponse: Response) => {
-        console.log(reponse.json());
         return reponse.status;
       })
   }

@@ -29,6 +29,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
         log.info("AuthenticationSuccessHandlerImpl onAuthenticationSuccess start.");
 
         //create token for authentication success
+        tokenAuthenticationService.removeAuthToken(request.getHeader(SecurityConstant.HEADER_SECURITY_TOKEN));
         final String authToken = tokenAuthenticationService.createAuthToken(authentication);
         response.setHeader(SecurityConstant.HEADER_SECURITY_TOKEN, authToken);
 

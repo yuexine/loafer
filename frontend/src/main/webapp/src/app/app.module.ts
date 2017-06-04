@@ -5,34 +5,39 @@ import {HttpModule} from "@angular/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 import {AppComponent} from "./app.component";
-import {HomeComponent} from "./home/home.component";
+import {HomeModule} from "./home/index";
 import {AppRouteModule} from "./app.routing.module";
-import {PageNotFoundComponent} from "./404/not-found.component";
-import {SignModule} from "./sign/sign.module";
-import {SignService} from "./_services/index";
-import {TagsComponent} from "./tag/tags.components";
-import {PostsModule} from "./posts/posts.module";
-import {StorageService} from "./_services/storage.service";
-import {HttpClient} from "./_services/http-client.service";
+import {AuthenticationService, HttpClient, SignService, StorageService} from "./_services/index";
+import {LoginComponent} from "./login/index";
+import {RegisterComponent} from "./register/index";
+import {AlertComponent} from "./alert";
+import {AlertService} from "./_services";
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    SignModule,
-    PostsModule,
-    AppRouteModule,
-    BrowserAnimationsModule
+    HomeModule,
+    AppRouteModule,   //order is important
+    // BrowserAnimationsModule
   ],
   declarations: [
+    AlertComponent,
     AppComponent,
-    HomeComponent,
-    TagsComponent,
-    PageNotFoundComponent
+    LoginComponent,
+    RegisterComponent
   ],
-  providers: [HttpClient, StorageService, SignService],
-  bootstrap: [AppComponent]
+  providers: [
+    AlertService,
+    AuthenticationService,
+    HttpClient,
+    SignService,
+    StorageService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule {
 }

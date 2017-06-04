@@ -50,7 +50,7 @@ public class TokenAuthenticationServiceImpl implements TokenAuthenticationServic
     public String createAuthToken(Authentication authentication) {
         log.info("{} createAuthToken start. ", authentication.getPrincipal());
         org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
-        UserInfo userInfo = userRepository.findOneWithAuthoritiesByUsername(user.getUsername()).map(userFromDB -> {
+        UserInfo userInfo = userRepository.findOneByLogin(user.getUsername()).map(userFromDB -> {
             return new UserInfo(userFromDB.getId(), userFromDB.getUsername());
         }).orElseThrow(() -> new NullPointerException());
 
@@ -66,7 +66,7 @@ public class TokenAuthenticationServiceImpl implements TokenAuthenticationServic
             String userInfoString = stringRedisTemplate.opsForValue().get(authToken);
             if (StringUtils.isNotEmpty(userInfoString)) {
                 UserInfo userInfo = JacksonUtil.genInstance().getJacksonBean(userInfoString, UserInfo.class);
-                Optional<User> userOptional = userRepository.findOneWithAuthoritiesByUsername(userInfo.getUsername());
+                Optional<User> userOptional = userRepository.findOneWithAuthoritiesByLogin(userInfo.getUsername());
                 return userOptional.map(user -> {
                     List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
                             .map(authority -> new SimpleGrantedAuthority(authority.getName()))

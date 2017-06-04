@@ -44,7 +44,7 @@ public class AccountResource {
         HttpHeaders textPlainHeaders = new HttpHeaders();
         textPlainHeaders.setContentType(MediaType.TEXT_PLAIN);
 
-        return userRepository.findOneByUsername(userVM.getUsername().toLowerCase())
+        return userRepository.findOneByLogin(userVM.getUsername().toLowerCase())
                 .map(user -> new ResponseEntity("username already in use", textPlainHeaders, HttpStatus.BAD_REQUEST))
                 .orElseGet(() -> {
                     User user = userService.createUser(userVM);

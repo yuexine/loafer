@@ -16,7 +16,7 @@ import java.io.Serializable;
  * Created by w on 2017/5/2.
  */
 @Entity
-@Table(name = "lf_authority")
+@Table(name = "authority")
 @Getter
 @Setter
 public class Authority implements GrantedAuthority,Serializable {

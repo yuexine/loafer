@@ -35,7 +35,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
         String lowercaseUsername = username.toLowerCase();
-        Optional<User> userFromDb = userRepository.findOneWithAuthoritiesByUsername(lowercaseUsername);
+        Optional<User> userFromDb = userRepository.findOneWithAuthoritiesByLogin(lowercaseUsername);
         return userFromDb.map(user -> {
             if (user.isActivated()) {
                 throw new UserNotActivatedException("User " + username + " was not activated");

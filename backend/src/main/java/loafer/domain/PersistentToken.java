@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @Entity
-@Table(name = "lf_persistent_token")
+@Table(name = "persistent_token")
 public class PersistentToken implements Serializable {
 
     private static final long serialVersionUID = 1L;

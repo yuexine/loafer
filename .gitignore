@@ -109,5 +109,5 @@ fabric.properties
 .idea/
 loafer.iml
 
-/frontend/src/main/webapp/node_modules/
-/frontend/src/main/webapp/node/
+/node_modules/
+/node/

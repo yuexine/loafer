@@ -6,9 +6,19 @@
   font-size: 14px;
 }
 
-.register_bg{
+.register_bg {
   background-color: #ff7c76;
   color: #ffffff;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
+}
+
+.title_:hover {
+  text-decoration: none !important;
+  color: #999 !important;
+}
+
+.title_:visited {
+  text-decoration: none;
+  color: #fff
 }

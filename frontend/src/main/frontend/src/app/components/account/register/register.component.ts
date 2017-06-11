@@ -25,8 +25,9 @@ export class RegisterComponent implements OnInit {
     //https://stackoverflow.com/questions/34636661/how-do-i-change-the-body-class-via-a-typescript-class-angular2
     //any better idea to set bg to element body?
     let body = document.getElementsByTagName('body')[0];
-    body.classList.remove('acc_bg');
-    body.classList.add('acc_bg');
+    body.classList.remove('reg_bg');
+    body.classList.remove('log_bg');
+    body.classList.add('reg_bg');
   }
 
   register() {
@@ -40,8 +41,7 @@ export class RegisterComponent implements OnInit {
         },
         error => {
           this.loading = false;
-          console.log(error._body.errMsg)
-          this.errMsg = error._body.errMsg ? error.body.errmsg : "注册失败";
+          this.errMsg = error._body ? JSON.parse(error._body).errMsg : "注册失败";
           console.log(error)
         }
       );

@@ -6,9 +6,11 @@ import lombok.Data;
  * Created by w on 2017/4/24.
  */
 @Data
-public class UserVM {
+public class VMUser {
 
     private String username;
+
+    private String email;
 
     private String password;
 

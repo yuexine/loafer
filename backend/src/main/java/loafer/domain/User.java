@@ -26,7 +26,7 @@ public class User extends AbstractTimeModel implements UserDetails, Serializable
     private static final long serialVersionUID = 1L;
 
     @NotNull
-    @Pattern(regexp = "^[a-z0-9]*$|(anonymousUser)")
+//    @Pattern(regexp = "^[a-z0-9]*$|(anonymousUser)")
     @Size(min = 1, max = 50)
     @Column(length = 50, unique = true, nullable = false)
     private String login;
@@ -89,7 +89,7 @@ public class User extends AbstractTimeModel implements UserDetails, Serializable
     )
     private Set<Tag> followingTags = new HashSet<>();
 
-    public void setUsername(String username) {
+    public void setLogin(String username) {
         this.login = username.toLowerCase();
     }
 

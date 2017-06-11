@@ -1,7 +1,7 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
 
-import {HomeComponent} from "app/component/home/home.component";
+import {HomeComponent} from "app/components/home/home.component";
 import {DiscoveryComponent} from "../discovery/discovery.component";
 import {DiscoveryListComponent} from "../discovery/discovery.list.component";
 import {TopicCategoryComponent} from "../topic/topic.category.component";

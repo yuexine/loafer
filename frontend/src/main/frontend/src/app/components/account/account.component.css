@@ -1,0 +1,14 @@
+.font_12 {
+  font-size: 12px;
+}
+
+.font_14 {
+  font-size: 14px;
+}
+
+.register_bg{
+  background-color: #ff7c76;
+  color: #ffffff;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+}

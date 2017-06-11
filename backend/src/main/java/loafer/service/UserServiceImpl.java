@@ -6,7 +6,7 @@ import loafer.repository.AuthorityRepository;
 import loafer.repository.UserRepository;
 import loafer.security.AuthoritiesConstants;
 import loafer.utils.RandomUtil;
-import loafer.web.models.UserVM;
+import loafer.web.models.VMUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(UserVM userVM) {
+    public User createUser(VMUser userVM) {
         User newUser = new User();
         Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
         Set<Authority> authorities = new HashSet<>();
@@ -45,7 +45,15 @@ public class UserServiceImpl implements UserService {
         String encryptedPassword = passwordEncoder.encode(userVM.getPassword());
         newUser.setActivated(false);
         newUser.setActivationKey(RandomUtil.generateActivationKey());
-        newUser.setUsername(userVM.getUsername());
+        newUser.setLogin(userVM.getEmail());
+        newUser.setEmail(userVM.getEmail());
+        String[] names = userVM.getUsername().split(" ");
+        if (names.length > 1) {
+            newUser.setFirstName(names[0]);
+            newUser.setLastName(userVM.getUsername().replaceFirst(names[0], "").trim());
+        } else {
+            newUser.setLastName(userVM.getUsername());
+        }
         newUser.setPassword(encryptedPassword);
         newUser.setAuthorities(authorities);
 

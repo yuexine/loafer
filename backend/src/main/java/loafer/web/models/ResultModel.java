@@ -6,7 +6,7 @@ import lombok.Data;
  * Created by w on 2017/4/24.
  */
 @Data
-public class Result {
+public class ResultModel {
 
     private Boolean success = true;
 
@@ -14,12 +14,20 @@ public class Result {
 
     private Object errMsg;
 
-    public Result(Boolean success, Object body) {
+    public ResultModel(Boolean success, Object body) {
         this.success = success;
         this.body = body;
     }
 
-    public Result(Boolean success) {
+    public ResultModel(Boolean success) {
         this.success = success;
+    }
+
+    public ResultModel(Object errMsg) {
+        this.success = false;
+        this.errMsg = errMsg;
+    }
+
+    public ResultModel() {
     }
 }

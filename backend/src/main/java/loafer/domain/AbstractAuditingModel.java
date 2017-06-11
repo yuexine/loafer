@@ -25,12 +25,12 @@ public abstract class AbstractAuditingModel extends AbstractModel implements Ser
     private static final long serialVersionUID = 1L;
 
     @CreatedBy
-    @Column(name = "created_by")
-    private User createdBy;
+    @Column(name = "created_by", length = 50)
+    private String createdBy;
 
     @LastModifiedBy
-    @Column(name = "updated_by")
-    private User updatedBy;
+    @Column(name = "updated_by", length = 50)
+    private String updatedBy;
 
     @CreatedDate
     @Column(name = "create_at")

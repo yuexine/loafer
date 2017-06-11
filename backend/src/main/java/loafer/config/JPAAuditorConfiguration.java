@@ -18,17 +18,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class JPAAuditorConfiguration {
 
     @Bean
-    public AuditorAware<User> auditorProvider() {
-        return new AuditorAware<User>() {
+    public AuditorAware<String> auditorProvider() {
+        return new AuditorAware<String>() {
             @Override
-            public User getCurrentAuditor() {
+            public String getCurrentAuditor() {
                 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
                 if (authentication == null || !authentication.isAuthenticated()) {
                     return null;
                 }
 
-                return (User) authentication.getPrincipal();
+                return authentication.getPrincipal() instanceof User ?
+                        ((User) authentication.getPrincipal()).getLogin() : authentication.getPrincipal().toString();
             }
         };
     }

@@ -1,10 +1,13 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers, RequestOptionsArgs, RequestOptions} from "@angular/http";
 import {isNull, isUndefined} from "util";
+import {GlobalVariable} from "../configs/globals"
 
 @Injectable()
 export class HttpService{
-  tokenKey = 'X-AuthToken';
+
+  apiUrl = GlobalVariable.API_URL;
+  tokenKey = GlobalVariable.TOKEN_KEY;
 
   constructor(private http: Http) {
   }
@@ -23,18 +26,18 @@ export class HttpService{
   }
 
   get(url: string, options?: RequestOptionsArgs) {
-    return this.http.get(url, this.createAuthorizationHeader(options));
+    return this.http.get(this.apiUrl + url, this.createAuthorizationHeader(options));
   }
 
   post(url: string, body: any, options?: RequestOptionsArgs) {
-    return this.http.post(url, body, this.createAuthorizationHeader(options));
+    return this.http.post(this.apiUrl + url, body, this.createAuthorizationHeader(options));
   };
 
   put(url: string, body: any, options?: RequestOptionsArgs) {
-    return this.put(url, body, this.createAuthorizationHeader(options));
+    return this.put(this.apiUrl + url, body, this.createAuthorizationHeader(options));
   };
 
   delete(url: string, options?: RequestOptionsArgs) {
-    return this.delete(url, this.createAuthorizationHeader(options));
+    return this.delete(this.apiUrl + url, this.createAuthorizationHeader(options));
   };
 }

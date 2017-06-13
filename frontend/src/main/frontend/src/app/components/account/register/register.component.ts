@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Params, Route, Router} from "@angular/router";
 import {AccountService} from "../../../services/account.service";
 
 @Component({
@@ -14,11 +14,21 @@ export class RegisterComponent implements OnInit {
   errMsg: string;
 
   constructor(private router: Router,
+              private route: ActivatedRoute,
               private accountService: AccountService) {
   }
 
+  // https://stackoverflow.com/questions/35688084/how-get-query-params-from-url-in-angular2
   ngOnInit(): void {
     this.initBackGround();
+    console.log(this.router.url)
+    console.log(this.router);
+    console.log(this.route);
+    this.route.queryParams.subscribe((params: Params) => {
+      console.log(params)
+      let a= params['a'];
+      console.log(a)
+    })
   }
 
   initBackGround() {

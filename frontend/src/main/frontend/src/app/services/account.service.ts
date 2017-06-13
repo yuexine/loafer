@@ -11,7 +11,7 @@ export class AccountService {
   }
 
   create(user: User) {
-    return this.http.post('http://localhost:8080/api/account/register', user).map((response: Response) => response.json());
+    return this.http.post('api/account/register', user).map((response: Response) => response.json());
   }
 
 }

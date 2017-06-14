@@ -20,7 +20,7 @@ import javax.validation.Valid;
  * Created by wuyuexin on 2017/5/16.
  */
 @RestController
-@RequestMapping("/api/account")
+@RequestMapping("/api")
 public class AccountResource {
 
     private final Logger logger = LoggerFactory.getLogger(AccountResource.class);
@@ -50,9 +50,12 @@ public class AccountResource {
                 });
     }
 
-    @GetMapping(path = "account", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity account() {
+    @GetMapping(path = "account/info", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResultModel account() {
         Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return new ResponseEntity(obj, HttpStatus.OK);
+        if (obj instanceof User){
+
+        }
+        return null;
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -22,7 +23,7 @@ import java.io.IOException;
  * Created by wuyuexin on 2017/5/23.
  */
 @Component
-public class TokenAuthenticationFilter extends GenericFilterBean {
+public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     private static final Logger log = LoggerFactory.getLogger(TokenAuthenticationFilter.class);
 
@@ -33,23 +34,22 @@ public class TokenAuthenticationFilter extends GenericFilterBean {
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        log.info("StatelessAuthenticationFilter filter start. ");
-        log.info(((HttpServletRequest) servletRequest).getMethod());
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        log.info("doFilterInternal() start.");
 
-        String authToken = ((HttpServletRequest) servletRequest).getHeader(SecurityConstant.HEADER_SECURITY_TOKEN);
+        String authToken = request.getHeader(SecurityConstant.HEADER_SECURITY_TOKEN);
 
         if (StringUtils.isNotEmpty(authToken)) {
             Authentication authentication = tokenAuthenticationService.getAuthentication(authToken);
             if (authentication == null){
-                ((HttpServletResponse) servletResponse).sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access Denied");
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access Denied");
             }else {
-                ((HttpServletResponse) servletResponse).setHeader(SecurityConstant.HEADER_SECURITY_TOKEN, authToken);
+                response.setHeader(SecurityConstant.HEADER_SECURITY_TOKEN, authToken);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }
 
-        log.info("StatelessAuthenticationFilter filter end. ");
-        filterChain.doFilter(servletRequest, servletResponse);
+        log.info("doFilterInternal() end.");
+        filterChain.doFilter(request,response);
     }
 }

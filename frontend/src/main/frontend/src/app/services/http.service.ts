@@ -1,15 +1,17 @@
 import {Injectable} from "@angular/core";
-import {Http, Headers, RequestOptionsArgs, RequestOptions} from "@angular/http";
+import {Headers, Http, RequestOptions, RequestOptionsArgs} from "@angular/http";
 import {isNull, isUndefined} from "util";
-import {GlobalVariable} from "../configs/globals"
+import {GlobalVariable} from "../configs/globals";
+import {UserService} from "./user.service";
 
 @Injectable()
-export class HttpService{
+export class HttpService {
 
   apiUrl = GlobalVariable.API_URL;
   tokenKey = GlobalVariable.TOKEN_KEY;
 
-  constructor(private http: Http) {
+  constructor(private http: Http,
+              private userService: UserService) {
   }
 
   createAuthorizationHeader(options?: RequestOptionsArgs) {
@@ -21,7 +23,7 @@ export class HttpService{
       headers = new Headers();
       options.headers = headers;
     }
-    headers.append(this.tokenKey, localStorage.getItem(this.tokenKey));
+    headers.append(this.tokenKey, this.userService.currentUser.token);
     return options;
   }
 

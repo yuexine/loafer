@@ -23,9 +23,8 @@ public class ResultModel {
         this.success = success;
     }
 
-    public ResultModel(Object errMsg) {
-        this.success = false;
-        this.errMsg = errMsg;
+    public ResultModel(Object body) {
+        this.body = body;
     }
 
     public ResultModel() {

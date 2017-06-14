@@ -4,11 +4,10 @@ import {RegisterComponent} from "./register/register.component";
 import {LoginComponent} from "./login/login.component";
 import {FormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
-import {AccountService} from "../../services/account.service";
-import {HttpService} from "../../services/http.service";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, AccountRoutingModule],
+  imports: [BrowserModule, FormsModule, AccountRoutingModule, NgbModule],
   declarations: [RegisterComponent, LoginComponent],
   providers: [],
   exports: []

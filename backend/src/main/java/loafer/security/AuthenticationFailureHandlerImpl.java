@@ -20,7 +20,7 @@ public class AuthenticationFailureHandlerImpl implements AuthenticationFailureHa
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         log.info("AuthenticationFailureHandlerImpl onAuthenticationFailure start.");
-
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
         log.info("AuthenticationFailureHandlerImpl onAuthenticationFailure end.");
     }
 }

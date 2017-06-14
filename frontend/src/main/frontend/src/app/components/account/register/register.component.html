@@ -8,6 +8,7 @@
         <div class="col-6">
           <h3 class="text-center mt-3">Sign up</h3>
           <div class="mt-3 text-center font_14">Enter your email address to create your account on Loafer</div>
+          <div *ngIf="errMsg"><ngb-alert type="warning" [dismissible]="false">{{errMsg}}</ngb-alert></div>
           <!--form start-->
           <form class="mt-3" name="register-form" (submit)="f.form.valid && register()" #f="ngForm" novalidate>
             <div class="form-group">
@@ -38,7 +39,6 @@
               4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFV
               dmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/j
               DKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-              <span>{{errMsg}}</span>
             </div>
 
           </form>

@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
     let body = document.getElementsByTagName('body')[0];
     body.classList.remove('reg_bg');
     body.classList.remove('log_bg');
+    body.classList.remove('bg-faded');
     body.classList.add('log_bg');
   }
 

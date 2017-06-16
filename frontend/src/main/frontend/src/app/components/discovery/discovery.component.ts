@@ -4,4 +4,12 @@ import {Component} from "@angular/core";
   styleUrls: ['./discovery.component.css']
 })
 
-export class DiscoveryComponent{}
+export class DiscoveryComponent{
+  constructor(){
+    console.log("DiscoveryComponent constructor init.");
+  }
+
+  tabChange(event){
+    //doSomething when tab change
+  }
+}

@@ -5,4 +5,8 @@ import {Component} from "@angular/core";
   styleUrls: ['./discovery.component.css']
 })
 
-export class DiscoveryListComponent{}
+export class DiscoveryListComponent{
+  constructor(){
+    console.log("DiscoveryListComponent constructor init.");
+  }
+}

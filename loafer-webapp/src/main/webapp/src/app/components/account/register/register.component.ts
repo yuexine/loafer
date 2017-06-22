@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
   //https://stackoverflow.com/questions/34615425/how-to-watch-for-form-changes-in-angular-2/34615922#34615922
   ngAfterViewInit(): void {
-    console.log(this.form)
+    console.log(this.form);
     this.form.control.valueChanges.subscribe(values => {
       this.clearErrMsg();
     });

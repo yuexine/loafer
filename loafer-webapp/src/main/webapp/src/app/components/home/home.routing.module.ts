@@ -21,6 +21,10 @@ const homeRoutes: Routes = [
           {
             path: '',
             component: DiscoveryComponent
+          },
+          {
+            path: ':name',
+            component: DiscoveryComponent
           }
         ]
       },

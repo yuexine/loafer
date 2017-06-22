@@ -12,6 +12,8 @@ import {AccountModule} from "./components/account/account.module";
 import {AccountService} from "./services/account.service";
 import {HttpService} from "./services/http.service";
 import {UserService} from "./services/user.service";
+import {EmitterService} from "./services/event.emitter.service";
+import {MarkdownModule} from "angular2-markdown";
 
 @NgModule({
   declarations: [
@@ -24,9 +26,10 @@ import {UserService} from "./services/user.service";
     HomeModule,
     AccountModule,
     AppRoutingModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    MarkdownModule.forRoot()
   ],
-  providers: [HttpService, AccountService, UserService],
+  providers: [HttpService, AccountService, UserService, EmitterService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

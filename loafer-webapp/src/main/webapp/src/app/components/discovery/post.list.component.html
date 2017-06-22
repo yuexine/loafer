@@ -1,5 +1,5 @@
 <div>
-  {{title}}
+  {{title}}{{currentPage}}
 </div>
 <div class="container mt-3">
   <div *ngFor="let item of data.content, let index = index">
@@ -33,12 +33,13 @@
     </div>
   </div>
 </div>
-<div class="my-3 mr-2" style="float: right;color: #999;">
+<div class="my-3 mr-2" *ngIf="currentPage" style="float: right;color: #999;">
   <ngb-pagination [collectionSize]="data.count"
                   [(page)]="currentPage"
                   [maxSize]="5"
                   [rotate]="true"
                   [ellipses]="false"
                   [boundaryLinks]="true"
+                  (pageChange)="pageChanged($event)"
                   size="lg"></ngb-pagination>
 </div>

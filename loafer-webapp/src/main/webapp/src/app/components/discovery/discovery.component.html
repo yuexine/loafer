@@ -8,25 +8,25 @@
             <ngb-tab id="latest">
               <ng-template ngbTabTitle>最新</ng-template>
               <ng-template ngbTabContent>
-                <post-list category="latest"></post-list>
+                <post-list category="latest" [topicName]="topicName"></post-list>
               </ng-template>
             </ngb-tab>
             <ngb-tab id="recommend">
               <ng-template ngbTabTitle>推荐</ng-template>
               <ng-template ngbTabContent>
-                <post-list category="recommend"></post-list>
+                <post-list category="recommend" [topicName]="topicName"></post-list>
               </ng-template>
             </ngb-tab>
             <ngb-tab id="hot">
               <ng-template ngbTabTitle>热门</ng-template>
               <ng-template ngbTabContent>
-                <post-list category="hot"></post-list>
+                <post-list category="hot" [topicName]="topicName"></post-list>
               </ng-template>
             </ngb-tab>
             <ngb-tab id="comment">
               <ng-template ngbTabTitle>等待回复</ng-template>
               <ng-template ngbTabContent>
-                <post-list category="comment"></post-list>
+                <post-list category="comment" [topicName]="topicName"></post-list>
               </ng-template>
             </ngb-tab>
           </ngb-tabset>

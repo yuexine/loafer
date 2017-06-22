@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>frontend</artifactId>
+    <artifactId>loafer-webapp</artifactId>
 
     <build>
         <plugins>
@@ -21,7 +21,7 @@
                 <configuration>
                     <nodeVersion>v7.8.0</nodeVersion>
                     <npmVersion>4.2.0</npmVersion>
-                    <workingDirectory>src/main/frontend</workingDirectory>
+                    <workingDirectory>src/main/webapp</workingDirectory>
                 </configuration>
 
                 <executions>
@@ -51,7 +51,7 @@
         </plugins>
         <resources>
             <resource>
-                <directory>target/frontend</directory>
+                <directory>target/loafer-webapp</directory>
                 <targetPath>static</targetPath>
             </resource>
         </resources>

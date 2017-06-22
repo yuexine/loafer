@@ -33,7 +33,7 @@ export class AccountService {
       this.http.get('api/account/info').map((response: Response) => response.json()).subscribe(
         data => {
           //todo
-          console.log(data)
+          console.log(data);
           this.userService.setCurrentUser(this.userService.currentUser);
         }, error => {
           console.log(error)

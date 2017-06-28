@@ -1,8 +1,11 @@
 package com.roysmond.loafer.api.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.roysmond.loafer.api.domain.emun.PostStatus;
 import com.roysmond.loafer.api.domain.emun.PostType;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -17,7 +20,8 @@ import java.util.Set;
  * <p>
  * Created by wuyuexin on 2017/6/3.
  */
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "post")
 public class Post extends AbstractAuditingModel implements Serializable {
@@ -45,6 +49,7 @@ public class Post extends AbstractAuditingModel implements Serializable {
     @Column(name = "post_status")
     private PostStatus status;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
@@ -64,6 +69,13 @@ public class Post extends AbstractAuditingModel implements Serializable {
     @Column(name = "replies", nullable = false)
     private int replies = 0;
 
+    @Column(name = "hot", nullable = false)
+    private Boolean hot = false;
+
+    @Column(name = "recommend")
+    private Boolean recommend;
+
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "post_focus",
             joinColumns = {@JoinColumn(name = "post_id", referencedColumnName = "id")},
@@ -76,13 +88,17 @@ public class Post extends AbstractAuditingModel implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "tag_id", nullable = false, updatable = false)})
     private Set<Tag> tags = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "post")
     private Set<Vote> votes = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "post")
     private Set<Reply> replySet = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(orphanRemoval = true, mappedBy = "post")
     private Set<Message> messages = new HashSet<>();
+
 
 }

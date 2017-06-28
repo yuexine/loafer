@@ -2,17 +2,19 @@ import {NgModule} from "@angular/core";
 
 import {HomeRoutingModule} from "./home.routing.module";
 import {HomeComponent} from "./home.component";
-import {DiscoveryModule} from "../discovery/discovery.module";
+import {NavigationModule} from "../navigation/navigation.module";
 import {ArticleModule} from "../article/article.module";
 import {TopicModule} from "../topic/topic.module";
+import {PostArticleModule} from "../publish/post.article.module";
 
 @NgModule({
   id: module.id,
   imports: [
     HomeRoutingModule,
-    DiscoveryModule,
+    NavigationModule,
     ArticleModule,
-    TopicModule
+    TopicModule,
+    PostArticleModule
   ],
   declarations: [
     HomeComponent

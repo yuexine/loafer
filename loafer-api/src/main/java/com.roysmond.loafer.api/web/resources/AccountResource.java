@@ -4,7 +4,7 @@ import com.roysmond.loafer.api.domain.User;
 import com.roysmond.loafer.api.repository.UserRepository;
 import com.roysmond.loafer.api.service.MailService;
 import com.roysmond.loafer.api.service.UserService;
-import com.roysmond.loafer.api.web.models.ResultModel;
+import com.roysmond.loafer.api.web.models.Result;
 import com.roysmond.loafer.api.web.models.VMUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,17 +41,17 @@ public class AccountResource {
     public ResponseEntity register(@Valid @RequestBody VMUser vmUser) {
 
         return userRepository.findOneByLogin(vmUser.getEmail().toLowerCase())
-                .map(user -> new ResponseEntity(new ResultModel("username already in use"), HttpStatus.BAD_REQUEST))
+                .map(user -> new ResponseEntity(new Result("username already in use"), HttpStatus.BAD_REQUEST))
                 .orElseGet(() -> {
                     User user = userService.createUser(vmUser);
 
                     mailService.sendActivationEmail(user);
-                    return new ResponseEntity(new ResultModel(), HttpStatus.CREATED);
+                    return new ResponseEntity(new Result(), HttpStatus.CREATED);
                 });
     }
 
     @GetMapping(path = "account/info", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResultModel account() {
+    public Result account() {
         Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (obj instanceof User){
 

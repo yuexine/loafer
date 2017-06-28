@@ -1,0 +1,48 @@
+<div class="container my-5">
+  <div class="col row justify-content-center">
+    <div class="col-11 pt-2" style="background-color: #ffffff;border-radius: 5px;">
+      <div class="row" style="border-bottom: 1px solid rgba(0,0,0,.1);">
+
+        <div class="col-9" style="border-right: 1px solid rgba(0,0,0,.1);position: relative">
+          <div style="border-bottom: 1px solid #ddd">
+            <ngb-tabset>
+              <ngb-tab>
+                <ng-template ngbTabTitle>MarkDown</ng-template>
+                <ng-template ngbTabContent>
+                  <div class="px-2"
+                       style="width: 100%;height: 800px;border:1px solid;border-top: 0;border-color: #ddd #ddd #fff;">
+                    <input type="text" name="title" class="form-control pt-3" placeholder="Title"
+                           [(ngModel)]="postTitle" (ngModelChange)="packageTitle($event)"
+                           style="width: 100%;border: 0;font-size: 20px;line-height: 2">
+                    <hr class="mt-0 mb-2">
+                    <textarea [(ngModel)]="postContent" class="" style="width: 100%;height:700px;border: 0"></textarea>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab>
+                <ng-template ngbTabTitle>PreView</ng-template>
+                <ng-template ngbTabContent>
+                  <div class="px-2 pt-2"
+                       style="width: 100%;min-height: 800px;border: 1px solid;border-top: 0;border-color: #ddd #ddd #fff;">
+                    <markdown [data]="packagePostTitle"></markdown>
+                    <hr *ngIf="packagePostTitle" class="mt-0 mb-2">
+                    <markdown [data]="postContent"></markdown>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+            </ngb-tabset>
+          </div>
+          <div class="my-2 mr-2" style="float: right;">
+            <button type="button" class="btn btn-outline-danger" style="min-width: 90px;">Cancel</button>
+            <button type="button" class="btn btn-primary" style="min-width: 90px;" (click)="postArticle()">Post</button>
+          </div>
+        </div>
+
+        <div class="col-3">
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

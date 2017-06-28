@@ -1,0 +1,65 @@
+<div class="container my-5">
+  <div class="col row justify-content-center">
+    <div class="col-11">
+      <div class="row" style="border-bottom: 1px solid rgba(0,0,0,.1);">
+        <div class="col-9 pr-0" style="border-right: 1px solid rgba(0,0,0,.1);position: relative">
+          <h4 class="mt-1 mb-0" style="position: absolute;">{{topicName?topicName:'发现'}}</h4>
+
+          <!--ngx-bootstrap: load each tab in start, do lazy init when tab be selected-->
+          <tabset type="tabs justify-content-end">
+            <tab heading="最新" (select)="tabSelect('latest')">
+              <post-list type="latest" [selected]="selected" [topicName]="topicName"></post-list>
+            </tab>
+            <tab heading="推荐" (select)="tabSelect('recommend')">
+              <post-list type="recommend" [selected]="selected" [topicName]="topicName"></post-list>
+            </tab>
+            <tab heading="热门" (select)="tabSelect('hot')">
+              <post-list type="hot" [selected]="selected" [topicName]="topicName"></post-list>
+            </tab>
+            <tab heading="等待回复" (select)="tabSelect('comment')">
+              <post-list type="comment" [selected]="selected" [topicName]="topicName"></post-list>
+            </tab>
+          </tabset>
+
+          <!--ng2-bootstrap-->
+          <!--<ngb-tabset justify="end" #t="ngbTabset" (tabChange) = "tabChange($event)">-->
+          <!--<ngb-tab id="latest">-->
+          <!--<ng-template ngbTabTitle>最新</ng-template>-->
+          <!--<ng-template ngbTabContent>-->
+          <!--<post-list category="latest" [topicName]="topicName"></post-list>-->
+          <!--</ng-template>-->
+          <!--</ngb-tab>-->
+          <!--<ngb-tab id="recommend">-->
+          <!--<ng-template ngbTabTitle>推荐</ng-template>-->
+          <!--<ng-template ngbTabContent>-->
+          <!--<post-list category="recommend" [topicName]="topicName"></post-list>-->
+          <!--</ng-template>-->
+          <!--</ngb-tab>-->
+          <!--<ngb-tab id="hot">-->
+          <!--<ng-template ngbTabTitle>热门</ng-template>-->
+          <!--<ng-template ngbTabContent>-->
+          <!--<post-list category="hot" [topicName]="topicName"></post-list>-->
+          <!--</ng-template>-->
+          <!--</ngb-tab>-->
+          <!--<ngb-tab id="comment">-->
+          <!--<ng-template ngbTabTitle>等待回复</ng-template>-->
+          <!--<ng-template ngbTabContent>-->
+          <!--<post-list category="comment" [topicName]="topicName"></post-list>-->
+          <!--</ng-template>-->
+          <!--</ngb-tab>-->
+          <!--</ngb-tabset>-->
+        </div>
+        <div class="col-3">
+          <div class="row mt-1">
+            <div class="clearfix col-12">
+              <h5>热门话题</h5>
+              <hr>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

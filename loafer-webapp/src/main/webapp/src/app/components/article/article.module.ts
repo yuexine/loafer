@@ -3,9 +3,12 @@ import {HomeRoutingModule} from "../home/home.routing.module";
 import {ArticleComponent} from "./article.component";
 import {IssueComponent} from "./issue.component";
 import {MarkdownModule} from "angular2-markdown";
+import {PostService} from "../../services/post.service";
+import {BrowserModule} from "@angular/platform-browser";
 
 @NgModule({
   imports: [
+    BrowserModule,
     HomeRoutingModule,
     MarkdownModule.forRoot()
   ],
@@ -13,7 +16,9 @@ import {MarkdownModule} from "angular2-markdown";
     ArticleComponent,
     IssueComponent,
   ],
-  providers: []
+  providers: [
+    PostService
+  ]
 })
 
 export class ArticleModule{}

@@ -1,5 +1,6 @@
 package com.roysmond.loafer.api.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,15 +21,19 @@ public class Topic extends AbstractAuditingModel implements Serializable {
     @Column(name = "name", nullable = false, length = 60, unique = true)
     private String name;
 
-    @Column(name = "friendly_name", nullable = false)
-    private String friendlyName;
-
     @Column(name = "description", length = 200)
     private String description;
 
     @Column(name = "weight")
     private Integer weight = 0;
 
+    @Column(name = "image")
+    private String image;
+
+    @Column(name = "target")
+    private String target;
+
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "topic_tags",
             joinColumns = @JoinColumn(name = "topic_id", referencedColumnName = "id"),

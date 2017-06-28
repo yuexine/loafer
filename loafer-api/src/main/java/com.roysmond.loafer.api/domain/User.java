@@ -72,16 +72,19 @@ public class User extends AbstractTimeModel implements UserDetails, Serializable
     private Set<Authority> authorities = new HashSet<>();
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "user")
     private Set<PersistentToken> persistentTokens = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "user")
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "user")
     private Set<Tag> tags = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
     private Set<Vote> votes = new HashSet<>();
 
-    @ManyToMany
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "follow_tags",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},

@@ -2,11 +2,13 @@ package com.roysmond.loafer.api.web.models;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * Created by w on 2017/4/24.
  */
 @Data
-public class ResultModel {
+public class Result implements Serializable {
 
     private Boolean success = true;
 
@@ -14,19 +16,19 @@ public class ResultModel {
 
     private Object errMsg;
 
-    public ResultModel(Boolean success, Object body) {
+    public Result(Boolean success, Object body) {
         this.success = success;
         this.body = body;
     }
 
-    public ResultModel(Boolean success) {
+    public Result(Boolean success) {
         this.success = success;
     }
 
-    public ResultModel(Object body) {
+    public Result(Object body) {
         this.body = body;
     }
 
-    public ResultModel() {
+    public Result() {
     }
 }

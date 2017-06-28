@@ -1,0 +1,23 @@
+<div class="container my-5">
+  <div class="col row justify-content-center">
+    <div class="col-12">
+      <div class="row">
+
+        <div class="col-3 my-3 px-2" *ngFor="let topic of activeTopic" (click)="navigateTo(topic.name, topic.id);">
+          <div class="row jumbotron px-2 py-1 mx-0 my-0 item-tag">
+            <div class="col-2 p-0"><img src="{{topic.image}}" style="height: 3rem;width: 3rem;" alt=""></div>
+            <div class="col-10">
+              <div class="">
+                <h5 class="display-3" style="font-size: 1.25rem;">{{topic.name}}</h5>
+                <p class="lead" style="font-size: 0.8rem;">{{topic.description}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

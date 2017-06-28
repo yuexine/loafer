@@ -1,15 +1,13 @@
-<div>
-  {{title}}{{currentPage}}
-</div>
-<div class="container mt-3">
-  <div *ngFor="let item of data.content, let index = index">
+<div class="container mt-3" style="min-height: 600px;">
+  <!--A Post Summary-->
+  <div *ngFor="let item of data.content, let index = index" [@flyInOut]="'in'">
     <hr *ngIf="index > 0">
     <div class="row pr-2">
       <div class="col-1 p-0">
         <img class="mt-2 img-thumbnail p-0" style="width: 3rem;height: 3rem;border: 0;"
-             src="{{item.user.avatar}}" alt="">
+             src="{{0}}" alt="">
       </div>
-      <div class="col-10">
+      <div class="col-10" (click)="toPostDetail(item)">
         <div class="card">
           <div class="card-block">
             <h4 class="card-title">{{item.title}}</h4>
@@ -22,24 +20,23 @@
       </div>
       <div class="col-1 p-0 mt-2">
         <div class="rounded text-center" style="border: 1px solid rgba(0,0,0,.1);font-size: 0.8em;color: #999;">
-          <div class="text-center">{{item.views}}</div>
+          <div class="text-center">{{item.hits}}</div>
           <div class="text-center">views</div>
         </div>
         <div class="mt-2 rounded text-center" style="border: 1px solid rgba(0,0,0,.1);font-size: 0.8em;color: #999;">
-          <div class="text-center">{{item.votes}}</div>
+          <div class="text-center">{{item.voteUp}}</div>
           <div class="text-center">votes</div>
         </div>
       </div>
     </div>
   </div>
+
 </div>
-<div class="my-3 mr-2" *ngIf="currentPage" style="float: right;color: #999;">
-  <ngb-pagination [collectionSize]="data.count"
-                  [(page)]="currentPage"
-                  [maxSize]="5"
-                  [rotate]="true"
-                  [ellipses]="false"
-                  [boundaryLinks]="true"
-                  (pageChange)="pageChanged($event)"
-                  size="lg"></ngb-pagination>
+<div class="my-3 mr-2" *ngIf="data.totalElements" style="float: right;color: #999;">
+  <pagination [totalItems]="data.totalElements"
+              [(ngModel)]="currentPage"
+              [maxSize]="5"
+              (pageChanged)="pageChanged($event)"
+              [itemsPerPage]="itemsPerPage"
+  ></pagination>
 </div>

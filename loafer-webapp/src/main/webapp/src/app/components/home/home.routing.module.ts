@@ -2,12 +2,13 @@ import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
 
 import {HomeComponent} from "app/components/home/home.component";
-import {DiscoveryComponent} from "../discovery/discovery.component";
-import {DiscoveryListComponent} from "../discovery/discovery.list.component";
+import {PostNavComponent} from "../navigation/post.nav.component";
+import {ActiveTopicComponent} from "../navigation/topic.active.component";
 import {TopicCategoryComponent} from "../topic/topic.category.component";
 import {TopicComponent} from "../topic/topic.component";
 import {IssueComponent} from "../article/issue.component";
 import {ArticleComponent} from "../article/article.component";
+import {PostArticleComponent} from "../publish/post.article.component";
 
 const homeRoutes: Routes = [
   {
@@ -16,15 +17,15 @@ const homeRoutes: Routes = [
     children: [
       {
         path: '',
-        component: DiscoveryListComponent,
+        component: ActiveTopicComponent,
         children: [
           {
             path: '',
-            component: DiscoveryComponent
+            component: PostNavComponent
           },
           {
             path: ':name',
-            component: DiscoveryComponent
+            component: PostNavComponent
           }
         ]
       },
@@ -43,6 +44,10 @@ const homeRoutes: Routes = [
       {
         path: 'article/:id',
         component: ArticleComponent
+      },
+      {
+        path: 'publish/article',
+        component: PostArticleComponent
       }
     ]
   },

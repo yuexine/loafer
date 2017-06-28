@@ -14,6 +14,9 @@ import {HttpService} from "./services/http.service";
 import {UserService} from "./services/user.service";
 import {EmitterService} from "./services/event.emitter.service";
 import {MarkdownModule} from "angular2-markdown";
+import {PostArticleModule} from "./components/publish/post.article.module";
+import {TopicService} from "./services/topic.service";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -21,15 +24,17 @@ import {MarkdownModule} from "angular2-markdown";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     HomeModule,
     AccountModule,
+    PostArticleModule,
     AppRoutingModule,
     NgbModule.forRoot(),
     MarkdownModule.forRoot()
   ],
-  providers: [HttpService, AccountService, UserService, EmitterService],
+  providers: [HttpService, AccountService, UserService, EmitterService, TopicService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

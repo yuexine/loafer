@@ -3,47 +3,48 @@
   <div class="row">
   </div>
   <div class="mt-5 mb-5 row justify-content-center">
-    <div class="col-7" style="">
-      <h1 class="text-center" style="color: #ffffff"><a href="#" class="title_" routerLink="/">Loafer</a></h1>
-      <h3 class="text-center" style="color: #999;">Sign In</h3>
-      <div *ngIf="message">
-        <ngb-alert [type]="type" [dismissible]="false">{{message}}</ngb-alert>
-      </div>
+    <div class="col-8" style="background-color: #ffffff;border-radius: 10px;">
       <div class="row">
-        <div class="col-6" style="border-right: 1px solid rgba(255,255,255,0.1)">
+        <div class="col-6">
+          <h3 class="text-center mt-3">Sign IN</h3>
+          <div class="mt-3 text-center font_14">Enter your email address to login in your account on Loafer</div>
+          <div *ngIf="message">
+            <ngb-alert [type]="type" [dismissible]="false">{{message}}</ngb-alert>
+          </div>
           <!--form start-->
-          <form class="mt-3" method="post" (submit)="loginFrom.form.valid && login()" #loginFrom="ngForm" name="login-form" novalidate>
+          <form class="mt-3"  method="post" (submit)="loginFrom.form.valid && login()" #loginFrom="ngForm" name="login-form" novalidate>
+
             <div class="form-group">
-              <label for="username" class="font_14" style="color: rgba(255, 255, 255, 0.7);">Username or Email</label>
-              <input type="text" class="form-control" id="username" name="username" autocomplete="off"
+              <label for="username" class="font_14">Username or Email</label>
+              <input type="text" class="form-control" id="username" name="username" placeholder="username or email" autocomplete="off"
                      [(ngModel)]="model.username" #username="ngModel" required>
             </div>
+
             <div class="form-group">
-              <label for="password" class="font_14" style="color: rgba(255, 255, 255, 0.7)"><span
+              <label for="password" class="font_14" ><span
                 class="mr-2">Password</span><a href=""><span>Forgot?</span></a></label>
-              <input type="password" class="form-control" id="password" name="password" autocomplete="off"
+              <input type="password" class="form-control" id="password" name="password" placeholder="Your password" autocomplete="off"
                      [(ngModel)]="model.password" #password="ngModel" required>
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-default" [disabled]="loading || loginFrom.form.invalid"
-                      style="background-color: #df3e7b;text-decoration: none;color: #fff">Sign In
-              </button>
+              <button type="submit" [disabled]="loading || loginFrom.form.invalid" class="btn btn-default">Sign In</button>
+              <img *ngIf="loading" src="" />
             </div>
-
           </form>
           <!--form end-->
+
+          <hr class="" style="border-top: 1px solid #f2f2f2">
+          <div class="text-right mt-3 mb-3"> Not a member? <a href="#" routerLink="/account/register"><i
+            class="fa fa-hand-o-right mr-2"></i>Sign up now</a></div>
+
         </div>
-        <div class="col-6" style="color: #df3e7b;">
-          <h2 class="text-center" style="margin-top: 20%">Loafer</h2>
+        <div class="col-6 register_bg">
+          <h2 class="text-center" style="margin-top: 40%">Loafer</h2>
           <h4 class="text-center"><i class="fa fa-at"></i>share yourself</h4>
         </div>
-      </div>
-      <div class="text-center" style="color: #999;">Not a member? <a style="color: #999;text-decoration: underline;"
-                                                                     href="#" routerLink="/account/register">Sign up
-        now</a></div>
 
+      </div>
 
     </div>
   </div>
 </div>
-
